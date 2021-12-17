@@ -3,80 +3,79 @@
 
 
 class Star:
-    """Тип данных, описывающий звезду.
-    Содержит массу, координаты, скорость звезды,
-    а также визуальный радиус звезды в пикселах и её цвет.
+    """Datatype for star specification. 
+    Records star's mass, coordinates, radius in pixels, colour.
     """
 
     type = "star"
-    """Признак объекта звезды"""
+    """object type"""
 
     m = 0
-    """Масса звезды"""
+    """mass"""
 
     x = 0
-    """Координата по оси **x**"""
+    """x coordinate"""
 
     y = 0
-    """Координата по оси **y**"""
+    """y coordinate"""
 
     Vx = 0
-    """Скорость по оси **x**"""
+    """velocity, x component"""
 
     Vy = 0
-    """Скорость по оси **y**"""
+    """velocity, y component"""
 
     Fx = 0
-    """Сила по оси **x**"""
+    """force, x component"""
 
     Fy = 0
-    """Сила по оси **y**"""
+    """force, y component"""
 
     R = 5
-    """Радиус звезды"""
+    """radius"""
 
     color = "red"
-    """Цвет звезды"""
+    """colour"""
 
     image = None
-    """Изображение звезды"""
+    """star's picture (tkinter)"""
 
 
 class Planet:
-    """Тип данных, описывающий планету.
-    Содержит массу, координаты, скорость планеты,
-    а также визуальный радиус планеты в пикселах и её цвет
+    """Datatype for planet specification. 
+    Records planet's mass, coordinates, radius in pixels, colour.
+    
     """
 
     type = "planet"
-    """Признак объекта планеты"""
+    """object type"""
 
     m = 0
-    """Масса планеты"""
+    """mass"""
 
     x = 0
-    """Координата по оси **x**"""
+    """x coordinate"""
 
     y = 0
-    """Координата по оси **y**"""
+    """y coordinate"""
 
     Vx = 0
-    """Скорость по оси **x**"""
+    """velocity, x component"""
 
     Vy = 0
-    """Скорость по оси **y**"""
+    """velocity, y component"""
 
     Fx = 0
-    """Сила по оси **x**"""
+    """force, x component"""
 
     Fy = 0
-    """Сила по оси **y**"""
+    """force, y component"""
 
     R = 5
-    """Радиус планеты"""
+    """radius"""
 
     color = "green"
-    """Цвет планеты"""
+    """colour"""
 
     image = None
-    """Изображение планеты"""
+    """planet's picture (tkinter)"""
