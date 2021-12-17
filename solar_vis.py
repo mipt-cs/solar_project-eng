@@ -1,69 +1,64 @@
 # coding: utf-8
 # license: GPLv3
 
-"""Модуль визуализации.
-Нигде, кроме этого модуля, не используются экранные координаты объектов.
-Функции, создающие гaрафические объекты и перемещающие их на экране, принимают физические координаты
+"""Visualisation module. Object screen coordinates are used only in this module. 
 """
 
 header_font = "Arial-16"
-"""Шрифт в заголовке"""
+"""font in wondow header"""
 
 window_width = 800
-"""Ширина окна"""
+"""window width in pixels"""
 
 window_height = 800
-"""Высота окна"""
+"""window height in pixels"""
 
 scale_factor = None
-"""Масштабирование экранных координат по отношению к физическим.
-Тип: float
-Мера: количество пикселей на один метр."""
+"""coordinate scaling factor. For physical coordinates to screen coordinates transform. In pixels-per-metre.
+type: float
+"""
 
 
 def calculate_scale_factor(max_distance):
-    """Вычисляет значение глобальной переменной **scale_factor** по данной характерной длине"""
+    """calculates coordinate scale factor"""
     global scale_factor
     scale_factor = 0.4*min(window_height, window_width)/max_distance
     print('Scale factor:', scale_factor)
 
 
 def scale_x(x):
-    """Возвращает экранную **x** координату по **x** координате модели.
-    Принимает вещественное число, возвращает целое число.
-    В случае выхода **x** координаты за пределы экрана возвращает
-    координату, лежащую за пределами холста.
+    """Calculates screen **x** coordinate using model **x** coordinate.
+    Takes float, returns integer.
+    if the resulting **x** exceeds screen dimensions - the exceeding coordinate is returned.
 
-    Параметры:
+    Parametres:
 
-    **x** — x-координата модели.
+    **x** — physical model x coordinate.
     """
 
     return int(x*scale_factor) + window_width//2
 
 
 def scale_y(y):
-    """Возвращает экранную **y** координату по **y** координате модели.
-    Принимает вещественное число, возвращает целое число.
-    В случае выхода **y** координаты за пределы экрана возвращает
-    координату, лежащую за пределами холста.
-    Направление оси развёрнуто, чтобы у модели ось **y** смотрела вверх.
+    """Calculates screen **x** coordinate using model **x** coordinate.
+    Takes float, returns integer.
+    if the resulting **x** exceeds screen dimensions - the exceeding coordinate is returned.
+    **y** axis direction is reversed, cause in physical model it is upwards, whereas on canvas it's downwards.
+    
+    Parametres:
 
-    Параметры:
-
-    **y** — y-координата модели.
+    **y** — model y coordinate.
     """
 
     return y  # FIXME: not done yet
 
 
 def create_star_image(space, star):
-    """Создаёт отображаемый объект звезды.
+    """
+    Parametres:
 
-    Параметры:
-
-    **space** — холст для рисования.
-    **star** — объект звезды.
+    **space** — canvas.
+    **star** — star object.
     """
 
     x = scale_x(star.x)
@@ -73,35 +68,33 @@ def create_star_image(space, star):
 
 
 def create_planet_image(space, planet):
-    """Создаёт отображаемый объект планеты.
-
-    Параметры:
-
-    **space** — холст для рисования.
-    **planet** — объект планеты.
     """
-    pass  # FIXME: сделать как у звезды
+    Parametres:
+
+    **space** — canvas.
+    **planet** — planet object.
+    """
+    pass  # FIXME: implement like create_star_image(space, star)
 
 
 def update_system_name(space, system_name):
-    """Создаёт на холсте текст с названием системы небесных тел.
-    Если текст уже был, обновляет его содержание.
+    """Writes text on canvas with object names
 
-    Параметры:
+    Params:
 
-    **space** — холст для рисования.
-    **system_name** — название системы тел.
+    **space** — canvas.
+    **system_name** — object system name.
     """
     space.create_text(30, 80, tag="header", text=system_name, font=header_font)
 
 
 def update_object_position(space, body):
-    """Перемещает отображаемый объект на холсте.
+    """Moves objects on cnvas.
 
-    Параметры:
+    Params:
 
-    **space** — холст для рисования.
-    **body** — тело, которое нужно переместить.
+    **space** — canvas.
+    **body** — the object to be moved.
     """
     x = scale_x(body.x)
     y = scale_y(body.y)
